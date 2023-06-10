@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bookmarks',
 ]
+
+AUTH_USER_MODEL = 'bookmarks.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
