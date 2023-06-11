@@ -9,9 +9,9 @@
   {% csrf_token %}
 
   <div>{% render_field form.username class="w-full sm:w-72" placeholder="Username" %}</div>
-  <div id="username-err">{{ form.username.errors }}</div>
+  <div>{{ form.username.errors }}</div>
   <div>{% render_field form.password class="w-full sm:w-72" placeholder="Password" %}</div>
-  <div id="password-err">{{ form.password.errors }}</div>
+  <div>{{ form.password.errors }}</div>
 
   <button type="submit">Login</button>
 </form>
