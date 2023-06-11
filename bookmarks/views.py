@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http.response import HttpResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -52,3 +52,10 @@ def add(request):
             form.fields['url'].initial = request.GET.get('url', '')
             form.fields['description'].initial = request.GET.get('description', '')
     return render(request, 'add.html', {"form": form})
+
+@login_required
+@require_http_methods(['DELETE'])
+def delete(request, bookmark_id):
+    bookmark = get_object_or_404(models.Bookmark, id=bookmark_id, author=request.user)
+    bookmark.delete()
+    return HttpResponse()

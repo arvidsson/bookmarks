@@ -1,13 +1,19 @@
+<a href="{{bookmark.url}}">{{ bookmark.title }}</a>
+
+<a href="{{bookmark.url}}">{{ bookmark.url }}</a>
+
+<p>{{ bookmark.description }}</p>
+
 <div>
-    <a href="{{bookmark.url}}">{{ bookmark.title }}</a>
-
-    <a href="{{bookmark.url}}">{{ bookmark.url }}</a>
-
-    <p>{{ bookmark.description }}</p>
-
-    <div>
-        {% for tag in bookmark.tags.all %}
-            <a href="{{bookmark.url}}">{{ tag }}</a><span>{% if bookmark.tags.all|length != forloop.counter %},{% endif %}</span>
-        {% endfor %}
-    </div>
+    {% for tag in bookmark.tags.all %}
+        <a href="{{bookmark.url}}">{{ tag }}</a><span>{% if bookmark.tags.all|length != forloop.counter %},{% endif %}</span>
+    {% endfor %}
 </div>
+
+<a
+    role="button"
+    hx-target="closest div"
+    hx-swap="outerHTML"
+    hx-delete="/delete/{{bookmark.id}}/"
+    hx-confirm="Are you sure you want to delete the bookmark?"
+>delete</a>

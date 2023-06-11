@@ -1,7 +1,8 @@
 {% for bookmark in pages %}
+    <div>
     {% include 'partials/bookmark.html' %}
     {% if not forloop.last %}
         <hr />
     {% endif %}
-    
+    </div>
 {% endfor %}
