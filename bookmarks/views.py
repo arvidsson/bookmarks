@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http.response import HttpResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -23,7 +23,7 @@ def index(request):
     paginator = Paginator(bookmarks, 5)
     page_number = request.GET.get("page")
     pages = paginator.get_page(page_number)
-    return render(request, "index.html", {"bookmarks": bookmarks, "pages": pages})
+    return render(request, "index.html", {"bookmarks": pages})
 
 # javascript:window.location="http://127.0.0.1:8000/bookmarks/add/?url="+encodeURIComponent(document.location)+"&title="+encodeURIComponent(document.title)+"&description="+(document.querySelector(%27meta[name="description"]%27)!=null?document.querySelector(%27meta[name="description"]%27).content:"")+"&tags="+(document.querySelector(%27meta[name="keywords"]%27)!=null?document.querySelector(%27meta[name="keywords"]%27).content:"")@login_required(login_url='/')
 @login_required
@@ -88,3 +88,20 @@ def edit(request, bookmark_id):
         form.fields['description'].initial = bookmark.description
         form.fields['tags'].initial = ", ".join(list(bookmark.tags.names()))
     return render(request, 'edit.html', {"form": form, "bookmark_id": bookmark_id})
+
+@login_required
+@require_http_methods(['GET'])
+def search(request):
+    query = request.GET.get("q")
+    if query == "":
+        bookmarks = models.Bookmark.objects.filter(author=request.user).order_by("-created_at")
+        paginator = Paginator(bookmarks, 5)
+        page_number = request.GET.get("page")
+        pages = paginator.get_page(page_number)
+        return render(request, "partials/bookmarks.html", {"bookmarks": pages})
+    else:
+        bookmarks = models.Bookmark.objects.filter(author=request.user, title__icontains=query)
+        paginator = Paginator(bookmarks, 5)
+        page_number = request.GET.get("page")
+        pages = paginator.get_page(page_number)
+    return render(request, "partials/bookmarks.html", {"bookmarks": pages})

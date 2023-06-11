@@ -1,4 +1,4 @@
-{% for bookmark in pages %}
+{% for bookmark in bookmarks %}
     <div>
     {% include 'partials/bookmark.html' %}
     {% if not forloop.last %}
@@ -6,3 +6,19 @@
     {% endif %}
     </div>
 {% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if bookmarks.has_previous %}
+            <a href="?page=1"><</a>
+        {% endif %}
+
+        {% for i in bookmarks.paginator.page_range %}
+            <span {% if bookmarks.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></span>
+        {% endfor %}
+
+        {% if bookmarks.has_next %}
+            <a href="?page={{ bookmarks.paginator.num_pages }}">></a>
+        {% endif %}
+    </span>
+</div>
