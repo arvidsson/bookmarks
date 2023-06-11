@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block nav %}<a href="{% url 'index' %}">bookmarks</a> / add{% endblock nav %}
+
+{% block content %}
+
+<div>
+
+<form method="POST" action="{% url 'add' %}" autocomplete='off'>
+    {% csrf_token %}
+
+    <div>
+        {% render_field form.title placeholder="Title" %}
+        <div>{{ form.title.errors }}</div>
+    </div>
+    <div>
+        {% render_field form.url placeholder="URL" %}
+        <div>{{ form.url.errors }}</div>
+    </div>
+    <div>
+        {% render_field form.description placeholder="Description" %}
+        <div>{{ form.description.errors }}</div>
+    </div>
+    <div>
+        {% render_field form.tags placeholder="Tags" %}
+        <div>{{ form.tags.errors }}</div>
+    </div>
+    <div>
+        {% render_field form.todo %}
+        <label>
+        {{ form.todo.label_tag }}
+        </label>
+    </div>
+    <div>
+        {% render_field form.public %}
+        <label>
+        {{ form.public.label_tag }}
+        </label>
+    </div>
+    
+    <button type="submit">Add bookmark</button>
+</form>
+
+</div>
+
+{% endblock content %}

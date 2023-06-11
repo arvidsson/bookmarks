@@ -4,6 +4,8 @@
 
 {% block content %}
 
+<button onclick="location.href='{% url "add" %}'">Add bookmark</button>
+
 <div id="bookmarks">
     {% include 'partials/bookmarks.html' %}
 </div>
