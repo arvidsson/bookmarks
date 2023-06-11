@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
-{% load widget_tweaks %}
+
+{% block nav %}<a href="{% url 'index' %}">bookmarks</a>{% endblock nav %}
 
 {% block content %}
 
-<div>Hello, World!</div>
+<div id="bookmarks">
+    {% include 'partials/bookmarks.html' %}
+</div>
 
 {% endblock content %}

@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from . import models
 
 def index(request):
-    return render(request, 'index.html')
+    bookmarks = models.Bookmark.objects.filter(author=request.user)
+    return render(request, 'index.html', {'bookmarks': bookmarks})

@@ -1,0 +1,7 @@
+{% for bookmark in bookmarks %}
+    {% include 'partials/bookmark.html' %}
+    {% if not forloop.last %}
+        <hr />
+    {% endif %}
+    
+{% endfor %}

@@ -1,0 +1,13 @@
+<div>
+    <a href="{{bookmark.url}}">{{ bookmark.title }}</a>
+
+    <a href="{{bookmark.url}}">{{ bookmark.url }}</a>
+
+    <p>{{ bookmark.description }}</p>
+
+    <div>
+        {% for tag in bookmark.tags.all %}
+            <a href="{{bookmark.url}}">{{ tag }}</a><span>{% if bookmark.tags.all|length != forloop.counter %},{% endif %}</span>
+        {% endfor %}
+    </div>
+</div>
