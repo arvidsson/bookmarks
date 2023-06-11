@@ -44,6 +44,9 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'bookmarks.User'
 
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+
 TAGGIT_CASE_INSENSITIVE = True
 
 MIDDLEWARE = [
