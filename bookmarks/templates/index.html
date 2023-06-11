@@ -8,4 +8,20 @@
     {% include 'partials/bookmarks.html' %}
 </div>
 
+<div class="pagination">
+    <span class="step-links">
+        {% if pages.has_previous %}
+            <a href="?page=1"><</a>
+        {% endif %}
+
+        {% for i in pages.paginator.page_range %}
+            <span {% if page_obj.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></span>
+        {% endfor %}
+
+        {% if pages.has_next %}
+            <a href="?page={{ pages.paginator.num_pages }}">></a>
+        {% endif %}
+    </span>
+</div>
+
 {% endblock content %}

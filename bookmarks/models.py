@@ -14,3 +14,6 @@ class Bookmark(models.Model):
     read_later = models.BooleanField(default=False)
     is_public = models.BooleanField(default=False)
     tags = TaggableManager(blank=True)
+
+    class Meta:
+        ordering = ["created_at"]
