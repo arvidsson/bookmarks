@@ -1,0 +1,33 @@
+.inline {
+    display: inline;
+}
+
+.underline {
+    text-decoration-line: underline;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+  
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.text-black {
+    color: rgb(0 0 0);
+}
+
+a:hover {
+    cursor:pointer;
+}

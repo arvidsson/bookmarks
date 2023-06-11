@@ -10,10 +10,13 @@
     {% endfor %}
 </div>
 
+<a href="{% url 'edit' bookmark.id %}" class="text-sm text-black underline">edit</a>
+<p class="inline text-sm"> | </p>
 <a
     role="button"
     hx-target="closest div"
     hx-swap="outerHTML"
     hx-delete="/delete/{{bookmark.id}}/"
     hx-confirm="Are you sure you want to delete the bookmark?"
+    class="text-sm underline"
 >delete</a>

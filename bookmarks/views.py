@@ -59,3 +59,32 @@ def delete(request, bookmark_id):
     bookmark = get_object_or_404(models.Bookmark, id=bookmark_id, author=request.user)
     bookmark.delete()
     return HttpResponse()
+
+@login_required
+@require_http_methods(['POST', 'GET'])
+def edit(request, bookmark_id):
+    bookmark = get_object_or_404(models.Bookmark, id=bookmark_id, author=request.user)
+    if request.method == "POST":
+        form = BookmarkForm(request.POST)
+        if form.is_valid() and request.user.is_authenticated:
+            bookmark.author=request.user
+            bookmark.title=form.cleaned_data['title']
+            bookmark.url=form.cleaned_data['url']
+            bookmark.description=form.cleaned_data['description']
+            bookmark.read_later=form.cleaned_data['read_later']
+            bookmark.is_public=form.cleaned_data['is_public']
+            tags = form.cleaned_data['tags']
+            bookmark.tags.clear()
+            for tag in tags:
+                bookmark.tags.add(tag)
+            bookmark.save()
+            print("saved: ", bookmark)
+            return HttpResponseRedirect("/")
+    else:
+        form = BookmarkForm()
+        form.label_suffix = ""
+        form.fields['title'].initial = bookmark.title
+        form.fields['url'].initial = bookmark.url
+        form.fields['description'].initial = bookmark.description
+        form.fields['tags'].initial = ", ".join(list(bookmark.tags.names()))
+    return render(request, 'edit.html', {"form": form, "bookmark_id": bookmark_id})
