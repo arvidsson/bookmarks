@@ -20,19 +20,19 @@ a {
   display: flex;
 }
 .flex-1 {
-  flex-grow: 1;
+  flex: 1 1 0;
 }
 .flex-2 {
-  flex-grow: 2;
+  flex: 2 1 0;
 }
 .flex-3 {
-  flex-grow: 3;
+  flex: 3 1 0;
 }
 .flex-4 {
-  flex-grow: 4;
+  flex: 4 1 0;
 }
 .flex-5 {
-  flex-grow: 5;
+  flex: 5 1 0;
 }
 .flex-10 {
   flex-grow: 10;
@@ -60,7 +60,7 @@ a {
 }
 
 .prose {
-  max-width: 65ch;
+  max-width: 80ch;
 }
 
 .underline {
@@ -96,9 +96,13 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
-.mx1 {
-  margin-left: 0.25rem;
+
+.mr1 {
   margin-right: 0.25rem;
+}
+
+.mr2 {
+  margin-right: 0.5rem;
 }
 
 .w-full {

@@ -1,24 +1,33 @@
-{% for bookmark in bookmarks %}
-    <div class="mt2">
-    {% include 'partials/bookmark.html' %}
-    {% if not forloop.last %}
-        <hr />
-    {% endif %}
+<div class="flex">
+    <div class="flex-3 mr2">
+    {% for bookmark in bookmarks %}
+        <div class="mt2">
+        {% include 'partials/bookmark.html' %}
+        {% if not forloop.last %}
+            <hr />
+        {% endif %}
+        </div>
+    {% endfor %}
+        <div class="flex justify-center mt4">
+            <span class="text-xlg blue">
+                {% if bookmarks.has_previous %}
+                    <a href="?page=1"><</a>
+                {% endif %}
+        
+                {% for i in bookmarks.paginator.page_range %}
+                    <span class="mx1" {% if bookmarks.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></span>
+                {% endfor %}
+        
+                {% if bookmarks.has_next %}
+                    <a href="?page={{ bookmarks.paginator.num_pages }}">></a>
+                {% endif %}
+            </span>
+        </div>
     </div>
-{% endfor %}
-
-<div class="flex justify-center mt4">
-    <span class="text-xlg blue">
-        {% if bookmarks.has_previous %}
-            <a href="?page=1"><</a>
-        {% endif %}
-
-        {% for i in bookmarks.paginator.page_range %}
-            <span class="mx1" {% if bookmarks.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></span>
+    <div class="flex-1 text-sm italic purple">
+        {% for tag in tags %}
+            <a href="{% url 'tag' tag %}">{{ tag }}</a>, 
         {% endfor %}
-
-        {% if bookmarks.has_next %}
-            <a href="?page={{ bookmarks.paginator.num_pages }}">></a>
-        {% endif %}
-    </span>
+    </div>
 </div>
+

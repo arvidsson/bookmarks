@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 from django import forms
 from taggit.forms import *
 from . import models
+from taggit.models import Tag
 
 class BookmarkForm(forms.Form):
     title = forms.CharField(label="Title", max_length=256)
@@ -23,7 +24,8 @@ def index(request):
     paginator = Paginator(bookmarks, 20)
     page_number = request.GET.get("page")
     pages = paginator.get_page(page_number)
-    return render(request, "index.html", {"bookmarks": pages})
+    tags = Tag.objects.all()
+    return render(request, "index.html", {"bookmarks": pages, "tags": tags})
 
 # javascript:window.location="http://127.0.0.1:8000/bookmarks/add/?url="+encodeURIComponent(document.location)+"&title="+encodeURIComponent(document.title)+"&description="+(document.querySelector(%27meta[name="description"]%27)!=null?document.querySelector(%27meta[name="description"]%27).content:"")+"&tags="+(document.querySelector(%27meta[name="keywords"]%27)!=null?document.querySelector(%27meta[name="keywords"]%27).content:"")@login_required(login_url='/')
 @login_required
@@ -105,3 +107,13 @@ def search(request):
         page_number = request.GET.get("page")
         pages = paginator.get_page(page_number)
     return render(request, "partials/bookmarks.html", {"bookmarks": pages})
+
+@login_required
+@require_http_methods(['GET'])
+def tag(request, tag_name):
+    bookmarks = models.Bookmark.objects.filter(author=request.user, tags__name__in=[tag_name]).order_by("-created_at")
+    paginator = Paginator(bookmarks, 20)
+    page_number = request.GET.get("page")
+    pages = paginator.get_page(page_number)
+    tags = Tag.objects.all()
+    return render(request, "index.html", {"bookmarks": pages, "tags": tags})
