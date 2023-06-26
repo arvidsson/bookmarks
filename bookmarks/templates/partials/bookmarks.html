@@ -7,14 +7,14 @@
     </div>
 {% endfor %}
 
-<div class="flex justify-center">
+<div class="flex justify-center mt4">
     <span class="text-xlg blue">
         {% if bookmarks.has_previous %}
             <a href="?page=1"><</a>
         {% endif %}
 
         {% for i in bookmarks.paginator.page_range %}
-            <span {% if bookmarks.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></span>
+            <span class="mx1" {% if bookmarks.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></span>
         {% endfor %}
 
         {% if bookmarks.has_next %}
