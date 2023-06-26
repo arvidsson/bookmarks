@@ -8,6 +8,7 @@ from django import forms
 from taggit.forms import *
 from . import models
 from taggit.models import Tag
+from django.db.models import Q
 
 class BookmarkForm(forms.Form):
     title = forms.CharField(label="Title", max_length=256)
@@ -97,13 +98,13 @@ def search(request):
     query = request.GET.get("q")
     if query == "":
         bookmarks = models.Bookmark.objects.filter(author=request.user).order_by("-created_at")
-        paginator = Paginator(bookmarks, 5)
+        paginator = Paginator(bookmarks, 20)
         page_number = request.GET.get("page")
         pages = paginator.get_page(page_number)
         return render(request, "partials/bookmarks.html", {"bookmarks": pages})
     else:
-        bookmarks = models.Bookmark.objects.filter(author=request.user, title__icontains=query)
-        paginator = Paginator(bookmarks, 5)
+        bookmarks = models.Bookmark.objects.filter(Q(author=request.user), Q(title__icontains=query) | Q(description__icontains=query))
+        paginator = Paginator(bookmarks, 20)
         page_number = request.GET.get("page")
         pages = paginator.get_page(page_number)
     return render(request, "partials/bookmarks.html", {"bookmarks": pages})
