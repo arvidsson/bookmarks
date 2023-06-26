@@ -11,9 +11,14 @@
     <script src="https://unpkg.com/htmx.org@1.9.2/dist/htmx.min.js" defer></script>
 </head>
 <body class="container">
-    <div>
+    <div class="flex justify-between">
+    {% if user.is_authenticated %}
+        <div>
         {% block nav %}
         {% endblock nav %}
+        </div>
+        <div>{{ user.username }} | <a href="{% url 'logout' %}">logout</a></div>
+    {% endif %}
     </div>
     <div>
         {% block content %}
