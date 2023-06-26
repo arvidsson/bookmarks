@@ -8,12 +8,12 @@
 <form method="post">
   {% csrf_token %}
 
-  <div>{% render_field form.username class="w-full sm:w-72" placeholder="Username" %}</div>
+  <div class="mt2">{% render_field form.username placeholder="Username" %}</div>
   <div>{{ form.username.errors }}</div>
-  <div>{% render_field form.password class="w-full sm:w-72" placeholder="Password" %}</div>
+  <div class="mt2">{% render_field form.password placeholder="Password" %}</div>
   <div>{{ form.password.errors }}</div>
 
-  <button type="submit">Login</button>
+  <button class="mt2" type="submit">Login</button>
 </form>
 
 {% endblock content %}
