@@ -2,6 +2,8 @@
 
 Web app for managing bookmarks.
 
+![Screenshot](screenshot.png)
+
 ## Features
 
 - Add, delete, edit, search bookmarks
@@ -32,4 +34,5 @@ python manage.py runserver
 
 ## Future
 
-- turn this into a collaborative curation of bookmarks
+- Import bookmarks in Netscape format
+- Turn this into a collaborative curation of bookmarks
