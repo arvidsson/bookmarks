@@ -1,33 +1,172 @@
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.black {
+  color: rgb(0 0 0);
+}
+.blue {
+  color: rgb(37 99 235);
+}
+.green {
+  color: rgb(22 163 74);
+}
+.purple {
+  color: rgb(126 34 206);
+}
+
+.flex {
+  display: flex;
+}
+.flex-1 {
+  flex-grow: 1;
+}
+.flex-2 {
+  flex-grow: 2;
+}
+.flex-3 {
+  flex-grow: 3;
+}
+.flex-4 {
+  flex-grow: 4;
+}
+.flex-5 {
+  flex-grow: 5;
+}
+.flex-10 {
+  flex-grow: 10;
+}
+.block {
+  display: block;
+}
 .inline {
-    display: inline;
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+.prose {
+  max-width: 65ch;
 }
 
 .underline {
-    text-decoration-line: underline;
+  text-decoration-line: underline;
+}
+.bold {
+  font-weight: 700;
+}
+.italic {
+  font-style: italic;
+}
+
+.m0 {
+  margin: 0;
+}
+.mt1 {
+  margin-top: 0.25rem;
+}
+.mt2 {
+  margin-top: 0.5rem;
+}
+.mt3 {
+  margin-top: 0.75rem;
+}
+.mt4 {
+  margin-top: 1rem;
+}
+.mx1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.text-xlg {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
-  
+
 .text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-}
-
-.bold {
-    font-weight: 700;
-}
-
-.italic {
-    font-style: italic;
-}
-
-.text-black {
-    color: rgb(0 0 0);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 a:hover {
-    cursor:pointer;
+  cursor: pointer;
+  text-decoration-line: underline;
+}
+
+.container {
+  margin: 1rem;
+}
+
+input,
+textarea,
+select,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border-color: #6b7280;
+  border-width: 1px;
+  border-radius: 0px;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  border-color: #2563eb;
+}
+
+@media (min-width: 640px) {
+  input,
+  textarea,
+  select,
+  button {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  input,
+  textarea,
+  select,
+  button {
+    width: 33%;
+  }
 }

@@ -8,15 +8,15 @@
     hx-get="/search/"
     hx-target="#bookmarks"
     hx-swap="innerHTML"
+    class="mt2"
 >
     <input type="text" name="q" placeholder="Search...">
 </form>
 
-<button onclick="location.href='{% url "index" %}'">Clear</button>
 
-<button onclick="location.href='{% url "add" %}'">Add bookmark</button>
+<button class="mt2" onclick="location.href='{% url "add" %}'">Add bookmark</button>
 
-<div id="bookmarks">
+<div id="bookmarks" class="mt4">
     {% include 'partials/bookmarks.html' %}
 </div>
 

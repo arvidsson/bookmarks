@@ -1,5 +1,5 @@
 {% for bookmark in bookmarks %}
-    <div>
+    <div class="mt2">
     {% include 'partials/bookmark.html' %}
     {% if not forloop.last %}
         <hr />
@@ -7,8 +7,8 @@
     </div>
 {% endfor %}
 
-<div class="pagination">
-    <span class="step-links">
+<div class="flex justify-center">
+    <span class="text-xlg blue">
         {% if bookmarks.has_previous %}
             <a href="?page=1"><</a>
         {% endif %}

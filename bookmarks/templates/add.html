@@ -10,19 +10,19 @@
 <form method="POST" action="{% url 'add' %}" autocomplete='off'>
     {% csrf_token %}
 
-    <div>
+    <div class="mt2">
         {% render_field form.title placeholder="Title" %}
         <div>{{ form.title.errors }}</div>
     </div>
-    <div>
+    <div class="mt2">
         {% render_field form.url placeholder="URL" %}
         <div>{{ form.url.errors }}</div>
     </div>
-    <div>
+    <div class="mt2">
         {% render_field form.description placeholder="Description" %}
         <div>{{ form.description.errors }}</div>
     </div>
-    <div>
+    <div class="mt2">
         {% render_field form.tags placeholder="Tags" %}
         <div>{{ form.tags.errors }}</div>
     </div>
@@ -39,7 +39,7 @@
         </label>
     </div>
     
-    <button type="submit">Add bookmark</button>
+    <button class="mt2" type="submit">Add bookmark</button>
 </form>
 
 </div>

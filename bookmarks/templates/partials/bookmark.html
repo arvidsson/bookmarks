@@ -1,22 +1,24 @@
-<a href="{{bookmark.url}}">{{ bookmark.title }}</a>
+<p class="m0"><a href="{{bookmark.url}}" class="text-lg underline blue">{{ bookmark.title }}</a></p>
+<p class="m0"><a href="{{bookmark.url}}" class="text-sm green">{{ bookmark.url }}</a></p>
 
-<a href="{{bookmark.url}}">{{ bookmark.url }}</a>
+<p class="m0 mt2 prose">{{ bookmark.description }}</p>
 
-<p>{{ bookmark.description }}</p>
-
-<div>
-    {% for tag in bookmark.tags.all %}
-        <a href="{{bookmark.url}}">{{ tag }}</a><span>{% if bookmark.tags.all|length != forloop.counter %},{% endif %}</span>
-    {% endfor %}
+<div class="mt1 flex justify-between">
+    <div class="flex">
+        {% for tag in bookmark.tags.all %}
+            <a href="{{bookmark.url}}" class="text-sm italic purple">{{ tag }}</a><span>{% if bookmark.tags.all|length != forloop.counter %},{% endif %}</span>
+        {% endfor %}
+    </div>
+    <div class="flex">
+        <a href="{% url 'edit' bookmark.id %}" class="text-sm underline">edit</a>
+        <p class="m0 mx1 text-sm"> | </p>
+        <a
+            role="button"
+            hx-target="closest div"
+            hx-swap="outerHTML"
+            hx-delete="/delete/{{bookmark.id}}/"
+            hx-confirm="Are you sure you want to delete the bookmark?"
+            class="text-sm underline"
+        >delete</a>
+    </div>
 </div>
-
-<a href="{% url 'edit' bookmark.id %}" class="text-sm text-black underline">edit</a>
-<p class="inline text-sm"> | </p>
-<a
-    role="button"
-    hx-target="closest div"
-    hx-swap="outerHTML"
-    hx-delete="/delete/{{bookmark.id}}/"
-    hx-confirm="Are you sure you want to delete the bookmark?"
-    class="text-sm underline"
->delete</a>
