@@ -20,7 +20,7 @@ class BookmarkForm(forms.Form):
 @require_http_methods(['GET'])
 def index(request):
     bookmarks = models.Bookmark.objects.filter(author=request.user).order_by("-created_at")
-    paginator = Paginator(bookmarks, 5)
+    paginator = Paginator(bookmarks, 20)
     page_number = request.GET.get("page")
     pages = paginator.get_page(page_number)
     return render(request, "index.html", {"bookmarks": pages})
