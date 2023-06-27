@@ -2,7 +2,7 @@
 
 Web app for managing bookmarks.
 
-<img src="screenshot.png" width=400 style="border: solid black 1px">
+<img src="screenshot.png" width=800 style="border: solid black 1px">
 
 ## Features
 
