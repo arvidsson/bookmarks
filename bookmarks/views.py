@@ -25,7 +25,7 @@ def index(request):
     paginator = Paginator(bookmarks, 20)
     page_number = request.GET.get("page")
     pages = paginator.get_page(page_number)
-    tags = Tag.objects.all()
+    tags = Tag.objects.all().order_by("name")
     return render(request, "index.html", {"bookmarks": pages, "tags": tags})
 
 # javascript:window.location="http://127.0.0.1:8000/bookmarks/add/?url="+encodeURIComponent(document.location)+"&title="+encodeURIComponent(document.title)+"&description="+(document.querySelector(%27meta[name="description"]%27)!=null?document.querySelector(%27meta[name="description"]%27).content:"")+"&tags="+(document.querySelector(%27meta[name="keywords"]%27)!=null?document.querySelector(%27meta[name="keywords"]%27).content:"")@login_required(login_url='/')
@@ -116,5 +116,5 @@ def tag(request, tag_name):
     paginator = Paginator(bookmarks, 20)
     page_number = request.GET.get("page")
     pages = paginator.get_page(page_number)
-    tags = Tag.objects.all()
+    tags = Tag.objects.all().order_by("name")
     return render(request, "index.html", {"bookmarks": pages, "tags": tags})
