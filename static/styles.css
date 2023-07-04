@@ -37,6 +37,7 @@ a {
 .flex-10 {
   flex-grow: 10;
 }
+
 .block {
   display: block;
 }
@@ -159,6 +160,12 @@ select:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
   border-color: #2563eb;
+}
+
+@media (max-width: 640px) {
+  .flex-col {
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 640px) {
