@@ -15,7 +15,7 @@
                 {% endif %}
         
                 {% for i in bookmarks.paginator.page_range %}
-                    <span class="mx1" {% if bookmarks.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></span>
+                    <span {% if bookmarks.number == i %} class="mx1 black" {% else %} class="mx1" {% endif %}><a href="?page={{i}}">{{i}}</a></span>
                 {% endfor %}
         
                 {% if bookmarks.has_next %}
