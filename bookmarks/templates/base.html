@@ -17,7 +17,7 @@
         {% block nav %}
         {% endblock nav %}
         </div>
-        <div>{{ user.username }} | <a href="{% url 'logout' %}">logout</a></div>
+        <div><span class="text-sm">logged in as {{ user.username }} </span> | <a href="{% url 'download' %}">export</a> | <a href="{% url 'logout' %}">logout</a></div>
     {% endif %}
     </div>
     <div>

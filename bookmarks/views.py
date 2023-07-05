@@ -9,6 +9,8 @@ from taggit.forms import *
 from . import models
 from taggit.models import Tag
 from django.db.models import Q
+from NetscapeBookmarksFileParser import creator
+from NetscapeBookmarksFileParser import BookmarkShortcut
 
 class BookmarkForm(forms.Form):
     title = forms.CharField(label="Title", max_length=256)
@@ -118,3 +120,19 @@ def tag(request, tag_name):
     pages = paginator.get_page(page_number)
     tags = Tag.objects.all().order_by("name")
     return render(request, "index.html", {"bookmarks": pages, "tags": tags})
+
+@login_required
+@require_http_methods(['GET'])
+def download(request):
+    bookmarks = models.Bookmark.objects.filter(author=request.user).order_by("-created_at")
+    file = creator.NetscapeBookmarksFile()
+    for bookmark in bookmarks:
+        shortcut = BookmarkShortcut()
+        shortcut.name = bookmark.title
+        shortcut.href = bookmark.url
+        shortcut.add_date_unix = bookmark.created_at
+        shortcut.comment = bookmark.description
+        if bookmark.tags is not None:
+            shortcut.tags = bookmark.tags.names()
+        file.bookmarks.items.append(shortcut)
+    return HttpResponse(file.create_file())
